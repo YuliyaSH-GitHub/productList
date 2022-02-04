@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  &:link {
+    color: inherit;
+  }
+}
+
+html,
+body,
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+body,
+#app {
+  flex-grow: 1;
+}
+
+html {
+  font-family: $font-family;
+  font-size: 100%;
+
+  height: 100%;
+
+  color: $text-color-primary;
+  background-color: $background-color-page;
+}
+
+body {
+  min-width: $page-min-width;
+}
+
+a {
+  text-decoration: none;
+
+  &:-webkit-any-link,
+  &:-webkit-any-link:active,
+  &:visited {
+    color: inherit;
+  }
+}
+
+input,
+textarea,
+button {
+  padding: 0;
+
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+
+  user-select: none;
+
+  vertical-align: middle;
+}
