@@ -4,3 +4,49 @@
     margin: 0;
     padding: 0;
 }
+
+@mixin h2 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 35px;
+}
+
+@mixin label-text {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: -0.02em;
+}
+
+@mixin input-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+@mixin button-text {
+    font-family: $font-family-additional;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+}
+
+@mixin base-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+@mixin base-card-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    
+}
+
+@mixin base-card-price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    
+}
