@@ -60,10 +60,47 @@ button {
   background: transparent;
 }
 
+input {
+  vertical-align: middle;
+}
+
 button {
   cursor: pointer;
 
   user-select: none;
 
   vertical-align: middle;
+}
+
+input[type="text"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-inline-start: 0;
+
+  &:not([class]) {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

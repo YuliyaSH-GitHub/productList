@@ -1,3 +1,15 @@
 <template>
-  <h1>Главная</h1>
+  <ThePage />
 </template>
+
+<script>
+  import ThePage from '@/components/layout/ThePage';
+
+  export default {
+    name: 'Home',
+
+    components: {
+      ThePage,
+    },
+  };
+</script>

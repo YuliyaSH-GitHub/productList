@@ -1,4 +1,4 @@
-# product-list
+# products-list
 
 ## Project setup
 ```
