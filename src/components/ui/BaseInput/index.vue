@@ -1,16 +1,22 @@
 <template>
-  <div class="base-input">
-    <label v-if="label" class="base-input__label" :class="classes" :for="id">
+  <div class="base-input" :class="classes" ref="baseInput">
+    <label v-if="label" class="base-input__label" :for="id">
       <span class="base-input__label-text">{{ label }}</span>
     </label>
 
     <input
+      v-model="modelValue"
       class="base-input__input"
       :type="type"
       :name="id"
       :id="id"
       :placeholder="placeholder"
+      @blur="validateInput"
     />
+
+    <p v-if="errorVisible" class="base-input__error">
+      Поле является обязательным!
+    </p>
   </div>
 </template>
 
@@ -27,6 +33,8 @@
 
   export default {
     name: 'BaseInput',
+
+    emits: ['update:modelValue'],
 
     props: {
       type: {
@@ -47,12 +55,39 @@
       },
       required: {
         type: Boolean,
+        default: false,
       },
+    },
+
+    data() {
+      return {
+        modelValue: '',
+        inputIsValid: true,
+      };
     },
 
     computed: {
       classes() {
-        return {required: this.required};
+        return {
+          required: this.required,
+          invalid: this.errorVisible,
+        };
+      },
+
+      errorVisible() {
+        return this.required && !this.inputIsValid;
+      },
+    },
+
+    methods: {
+      validateInput() {
+        if (this.modelValue === '') {
+          this.inputIsValid = false;
+        } else {
+          this.inputIsValid = true;
+        }
+
+        this.$emit('update:modelValue', this.modelValue);
       },
     },
   };
@@ -60,13 +95,44 @@
 
 <style lang="scss" scoped>
   .base-input {
+    &.required {
+      & .base-input__label-text {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          top: 0;
+          right: -4px;
+
+          display: block;
+
+          width: 4px;
+          height: 4px;
+
+          content: '';
+
+          color: $geraldine;
+
+          border-radius: 50%;
+          background-color: $geraldine;
+        }
+      }
+    }
+
+    &.invalid & {
+      &__input {
+        border: 1px solid $geraldine;
+      }
+    }
+
     &__input {
       @include input-text;
 
-      padding: 10px 16px 11px;
+      padding: 9px 16px 10px;
 
       color: $mine-shaft;
 
+      border: 1px solid transparent;
       border-radius: 4px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     }
@@ -87,30 +153,14 @@
       margin-bottom: 4px;
 
       color: $gun-powder;
+    }
 
-      &.required & {
-        &-text {
-          position: relative;
+    &__error {
+      @include error-text;
 
-          &::after {
-            position: absolute;
-            top: 0;
-            right: -4px;
+      margin-top: 4px;
 
-            display: block;
-
-            width: 4px;
-            height: 4px;
-
-            content: '';
-
-            color: $geraldine;
-
-            border-radius: 50%;
-            background-color: $geraldine;
-          }
-        }
-      }
+      color: $geraldine;
     }
   }
 </style>

@@ -9,7 +9,7 @@
 
       <main class="page__main">
         <div class="page__main-group">
-          <FormAddingProducts class="page__form" />
+          <AddProductForm class="page__form" />
           <ProductsList class="page__products-list" />
         </div>
       </main>
@@ -19,7 +19,7 @@
 
 <script>
   import MainContainer from '@/components/containers/MainContainer';
-  import FormAddingProducts from '@/components/global/FormAddingProducts';
+  import AddProductForm from '@/components/global/AddProductForm';
   import ProductsList from '@/components/global/ProductsList';
 
   export default {
@@ -27,7 +27,7 @@
 
     components: {
       MainContainer,
-      FormAddingProducts,
+      AddProductForm,
       ProductsList,
     },
   };

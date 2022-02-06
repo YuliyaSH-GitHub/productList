@@ -1,5 +1,10 @@
 <template>
-  <button class="base-button" :class="classes" :type="type">
+  <button
+    class="base-button"
+    :class="classes"
+    :type="type"
+    :disabled="disabled"
+  >
     <slot />
   </button>
 </template>
@@ -11,16 +16,24 @@
     name: 'BaseButton',
 
     props: {
+      disabled: {
+        type: Boolean,
+        default: true,
+      },
       type: {
         type: String,
         required: true,
         validator: (type) => TYPE.includes(type),
       },
+      active: {
+        type: Boolean,
+        default: false,
+      },
     },
 
     computed: {
       classes() {
-        return {[this.type]: !!this.type};
+        return {[this.type]: !!this.type, active: this.active};
       },
     },
   };
@@ -38,19 +51,17 @@
     border-radius: 10px;
 
     &.submit {
-      color: $nobel;
+      color: $white;
 
-      background-color: $gallery;
+      background-color: $chelsea-cucumber;
 
-      &.active {
-        color: $white;
-
-        background-color: $chelsea-cucumber;
-
-        &:hover {
-          background-color: $chelsea-cucumber-hover;
-        }
+      &:hover {
+        background-color: $chelsea-cucumber-hover;
       }
+
+      // &.active {
+
+      // }
 
       &:disabled {
         color: $nobel;

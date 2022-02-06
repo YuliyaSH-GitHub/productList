@@ -14,6 +14,7 @@
 
 <script>
   //   import {mapGetters} from 'vuex';
+  // import Client from './client';
 
   import BaseCard from '@/components/ui/BaseCard';
 
@@ -23,6 +24,22 @@
     components: {
       BaseCard,
     },
+
+    // data() {
+    //   return {
+    //     products: [],
+    //   };
+    // }
+
+    // created() {
+    //   this.loadProduct();
+    // }
+
+    // methods: {
+    //   loadProducts() {
+    //     this.product = Client.load();
+    //   },
+    // },
 
     data() {
       return {
