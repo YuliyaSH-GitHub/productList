@@ -1,6 +1,6 @@
 <template>
   <li class="base-card">
-    <img class="base-card__img" :src="link" alt="name" />
+    <img class="base-card__img" :src="link" :alt="name" />
 
     <div class="base-card__info">
       <h3 class="base-card__title">{{ name }}</h3>
@@ -25,7 +25,6 @@
       },
       description: {
         type: String,
-        // default: 'тут должно быть описание',
       },
       link: {
         type: String,
