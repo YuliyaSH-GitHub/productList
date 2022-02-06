@@ -3,11 +3,14 @@ $white: #FFF;
 $mine-shaft: #3F3F3F;
 $gun-powder: #49485E;
 $chelsea-cucumber: #7BAE73;
+$chelsea-cucumber-hover: #6c9c64;
 $gallery: #EEEEEE;
 $quarter-pearl-lusta: #FFFEFB;
 $nobel: #B4B4B4;
+$geraldine: #FF8484;
 
-$background-color: rgba(255, 254, 251, 0.8);
+// $background-color: rgba(255, 254, 251, 0.8);
+$background-color: rgba(245, 244, 244, 0.8);
 
 $text-color-primary: $mine-shaft;
 $background-color-page: $background-color;
@@ -33,4 +36,8 @@ $font-family:  $font-family-main, $font-family-default;
 */
 $transition-duration-normal: 300ms;
 
+/**
+*Path
+*/
+$img-path: '~@/assets/img/'
 
