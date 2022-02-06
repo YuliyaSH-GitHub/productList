@@ -9,6 +9,8 @@
       :name="id"
       :id="id"
       :placeholder="placeholder"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
     ></textarea>
   </div>
 </template>
@@ -18,6 +20,9 @@
     name: 'BaseTextarea',
 
     props: {
+      modelValue: {
+        type: String,
+      },
       id: {
         type: String,
         required: true,

@@ -7,6 +7,7 @@
       id="name"
       placeholder="Введите наименование товара"
       required
+      v-model="nameValue"
       @update:model-value="nameValue = $event"
     />
 
@@ -16,28 +17,30 @@
       type="text"
       id="description"
       placeholder="Введите описание товара"
+      v-model="descriptionValue"
       @update:model-value="descriptionValue = $event"
     />
 
     <BaseInput
       class="add-product-form__group"
-      :input-value="linkValue"
       label="Ссылка на изображение товара"
       type="text"
       id="link"
       placeholder="Введите ссылку"
       required
+      v-model="linkValue"
       @update:model-value="linkValue = $event"
     />
 
+    <!-- :input-value="priceValue" -->
     <BaseInput
       class="add-product-form__group"
-      :input-value="priceValue"
       label="Цена товара"
-      type="text"
+      type="number"
       id="price"
       placeholder="Введите цену"
       required
+      v-model="priceValue"
       @update:model-value="priceValue = $event"
     />
 
@@ -53,6 +56,8 @@
 </template>
 
 <script>
+  // import storage from '@/storage';
+
   import BaseInput from '@/components/ui/BaseInput';
   import BaseTextarea from '@/components/ui/BaseTextarea';
   import BaseButton from '@/components/ui/BaseButton';
@@ -73,7 +78,7 @@
         nameValue: '',
         descriptionValue: '',
         linkValue: '',
-        priceValue: '',
+        priceValue: null,
       };
     },
 
@@ -88,7 +93,26 @@
     },
 
     methods: {
-      submitForm() {},
+      resetModelValue() {
+        this.nameValue = '';
+        this.descriptionValue = '';
+        this.linkValue = '';
+        this.priceValue = '';
+      },
+
+      submitForm() {
+        const product = {
+          id: new Date().getTime(),
+          name: this.nameValue,
+          description: this.descriptionValue,
+          link: this.linkValue,
+          price: this.priceValue,
+        };
+
+        this.$store.dispatch('update', product);
+
+        this.resetModelValue();
+      },
     },
   };
 </script>

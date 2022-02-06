@@ -10,6 +10,7 @@
       <main class="page__main">
         <div class="page__main-group">
           <AddProductForm class="page__form" />
+
           <ProductsList class="page__products-list" />
         </div>
       </main>

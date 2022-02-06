@@ -13,8 +13,7 @@
 </template>
 
 <script>
-  //   import {mapGetters} from 'vuex';
-  // import Client from './client';
+  import {mapState} from 'vuex';
 
   import BaseCard from '@/components/ui/BaseCard';
 
@@ -25,61 +24,17 @@
       BaseCard,
     },
 
-    // data() {
-    //   return {
-    //     products: [],
-    //   };
-    // }
-
-    // created() {
-    //   this.loadProduct();
-    // }
-
-    // methods: {
-    //   loadProducts() {
-    //     this.product = Client.load();
-    //   },
-    // },
-
-    data() {
-      return {
-        productsInitial: [
-          {
-            id: 0,
-            name: 'Наименование товара',
-            link: 'https://placeimg.com/640/480/tech',
-            price: '10 000',
-          },
-          {
-            id: 1,
-            name: 'Наименование товара',
-            description:
-              'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-            link: 'https://placeimg.com/640/480/tech',
-            price: '10 000',
-          },
-          {
-            id: 2,
-            name: 'Наименование товара',
-            description:
-              'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-            link: 'https://placeimg.com/640/480/tech',
-            price: '10 000',
-          },
-          {
-            id: 3,
-            name: 'Наименование товара',
-            description:
-              'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-            link: 'https://placeimg.com/640/480/tech',
-            price: '10 000',
-          },
-        ],
-      };
-    },
     computed: {
-      products() {
-        return this.productsInitial;
+      ...mapState(['products']),
+    },
+
+    created() {
+      this.loadProducts();
+    },
+
+    methods: {
+      loadProducts() {
+        this.$store.dispatch('load');
       },
     },
   };

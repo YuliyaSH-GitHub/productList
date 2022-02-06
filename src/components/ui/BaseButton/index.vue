@@ -59,10 +59,6 @@
         background-color: $chelsea-cucumber-hover;
       }
 
-      // &.active {
-
-      // }
-
       &:disabled {
         color: $nobel;
 

@@ -5,13 +5,14 @@
     </label>
 
     <input
-      v-model="modelValue"
       class="base-input__input"
       :type="type"
       :name="id"
       :id="id"
       :placeholder="placeholder"
-      @blur="validateInput"
+      @blur="validateInput(modelValue)"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
 
     <p v-if="errorVisible" class="base-input__error">
@@ -23,6 +24,7 @@
 <script>
   const TYPE = [
     'text',
+    'number',
     'button',
     'checkbox',
     'radio',
@@ -37,6 +39,10 @@
     emits: ['update:modelValue'],
 
     props: {
+      modelValue: {
+        type: String,
+        Number,
+      },
       type: {
         type: String,
         required: true,
@@ -61,7 +67,6 @@
 
     data() {
       return {
-        modelValue: '',
         inputIsValid: true,
       };
     },
@@ -80,14 +85,14 @@
     },
 
     methods: {
-      validateInput() {
-        if (this.modelValue === '') {
+      validateInput(modelValue) {
+        if (modelValue === '') {
           this.inputIsValid = false;
         } else {
           this.inputIsValid = true;
         }
 
-        this.$emit('update:modelValue', this.modelValue);
+        this.$emit('update:modelValue', modelValue);
       },
     },
   };
