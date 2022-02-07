@@ -1,49 +1,51 @@
 import {createStore} from 'vuex';
 
+import storage from '@/storage';
+
 export default createStore({
-  state: {
-    products: [
-      {
-        id: 0,
-        name: 'Наименование товара',
-        description:
-          'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        link: 'https://placeimg.com/640/480/tech',
-        price: '10 000',
-      },
-      {
-        id: 1,
-        name: 'Наименование товара',
-        description:
-          'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        link: 'https://placeimg.com/640/480/tech',
-        price: '10 000',
-      },
-      {
-        id: 2,
-        name: 'Наименование товара',
-        description:
-          'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        link: 'https://placeimg.com/640/480/tech',
-        price: '10 000',
-      },
-      {
-        id: 3,
-        name: 'Наименование товара',
-        description:
-          'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        link: 'https://placeimg.com/640/480/tech',
-        price: '10 000',
-      },
-    ],
+  state() {
+    return {
+      products: [],
+    };
   },
 
-  // getters: {
-  //   products(state) {
-  //     return state.products;
-  //   },
-  // },
-  mutations: {},
-  actions: {},
-  modules: {},
+  getters: {
+    products(state) {
+      return state.products;
+    },
+  },
+
+  mutations: {
+    setProducts(state, data) {
+      state.products = data;
+    },
+  },
+
+  actions: {
+    async load({commit}) {
+      console.log('load');
+      try {
+        const content = await storage.load();
+
+        commit('setProducts', content);
+
+        return content;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async update({commit}, product) {
+      console.log('update');
+      try {
+        const content = await storage.save(product);
+
+        commit('setProducts', content);
+        console.log('content', content);
+        return content;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 });
