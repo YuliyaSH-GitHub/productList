@@ -1,12 +1,9 @@
 import {createStore} from 'vuex';
-
 import storage from '@/storage';
 
 export default createStore({
-  state() {
-    return {
-      products: [],
-    };
+  state: {
+    products: [],
   },
 
   getters: {
@@ -23,7 +20,6 @@ export default createStore({
 
   actions: {
     async load({commit}) {
-      console.log('load');
       try {
         const content = await storage.load();
 
@@ -36,13 +32,26 @@ export default createStore({
     },
 
     async update({commit}, product) {
-      console.log('update');
       try {
         const content = await storage.save(product);
 
         commit('setProducts', content);
-        console.log('content', content);
+
         return content;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async delete({commit, getters}, index) {
+      try {
+        let items = getters.products;
+
+        items.splice(index, 1);
+
+        storage.updateLocalStorage(items);
+
+        commit('setProducts', items);
       } catch (error) {
         console.log(error);
       }

@@ -1,5 +1,9 @@
 <template>
   <li class="base-card">
+    <button class="base-card__button" @click="$emit('delete')">
+      <BaseIcon name="delete" />
+    </button>
+
     <img class="base-card__img" :src="link" :alt="name" />
 
     <div class="base-card__info">
@@ -15,8 +19,14 @@
 </template>
 
 <script>
+  import BaseIcon from '@/components/ui/BaseIcon';
+
   export default {
     name: 'BaseCard',
+
+    components: {
+      BaseIcon,
+    },
 
     props: {
       name: {
@@ -45,8 +55,6 @@
     display: flex;
     flex-direction: column;
 
-    overflow: hidden;
-
     border-radius: 4px;
     background-color: $quarter-pearl-lusta;
 
@@ -56,6 +64,25 @@
     &:hover {
       box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1),
         0px 6px 10px rgba(0, 0, 0, 0.06);
+
+      & .base-card__button {
+        display: block;
+      }
+    }
+
+    &__button {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      z-index: 2;
+
+      display: none;
+
+      padding: 8px;
+
+      border-radius: 10px;
+      background-color: $geraldine;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     &__img {
@@ -64,6 +91,8 @@
 
       object-fit: cover;
       object-position: center;
+
+      border-radius: 4px 4px 0 0;
     }
 
     &__info {

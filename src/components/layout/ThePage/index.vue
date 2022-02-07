@@ -4,7 +4,11 @@
       <header class="page__header">
         <h2 class="page__header-title">Добавление товара</h2>
 
-        <button>По умолчанию</button>
+        <select class="page__select">
+          <option value="По умолчанию" selected>По умолчанию</option>
+          <option value="По умолчанию">По возрастанию цены</option>
+          <option value="По умолчанию">По убыванию цены</option>
+        </select>
       </header>
 
       <main class="page__main">
@@ -57,6 +61,23 @@
 
       &-title {
         @include h2;
+      }
+    }
+
+    &__select {
+      @include input-text;
+
+      padding: 10px 4px;
+
+      border-color: $quarter-pearl-lusta;
+      background: $quarter-pearl-lusta;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+
+      color: $nobel;
+
+      &:focus {
+        outline-color: $nobel;
       }
     }
 

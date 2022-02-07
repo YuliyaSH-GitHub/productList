@@ -1,20 +1,19 @@
 <template>
   <ul class="products-list">
     <BaseCard
-      v-for="product in products"
+      v-for="(product, idx) in products"
       :key="product.id"
       class="products-list__item"
       :name="product.name"
       :description="product.description"
       :link="product.link"
       :price="product.price"
+      @delete="removeProduct(idx)"
     />
   </ul>
 </template>
 
 <script>
-  import {mapState} from 'vuex';
-
   import BaseCard from '@/components/ui/BaseCard';
 
   export default {
@@ -25,7 +24,9 @@
     },
 
     computed: {
-      ...mapState(['products']),
+      products() {
+        return this.$store.getters['products'];
+      },
     },
 
     created() {
@@ -33,8 +34,12 @@
     },
 
     methods: {
-      loadProducts() {
-        this.$store.dispatch('load');
+      async loadProducts() {
+        await this.$store.dispatch('load');
+      },
+
+      async removeProduct(index) {
+        await this.$store.dispatch('delete', index);
       },
     },
   };

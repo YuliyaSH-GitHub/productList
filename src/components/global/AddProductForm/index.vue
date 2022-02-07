@@ -32,7 +32,6 @@
       @update:model-value="linkValue = $event"
     />
 
-    <!-- :input-value="priceValue" -->
     <BaseInput
       class="add-product-form__group"
       label="Цена товара"
@@ -56,8 +55,6 @@
 </template>
 
 <script>
-  // import storage from '@/storage';
-
   import BaseInput from '@/components/ui/BaseInput';
   import BaseTextarea from '@/components/ui/BaseTextarea';
   import BaseButton from '@/components/ui/BaseButton';
@@ -87,7 +84,7 @@
         return (
           this.nameValue === '' ||
           this.linkValue === '' ||
-          this.priceValue === ''
+          this.priceValue === null
         );
       },
     },
@@ -97,10 +94,10 @@
         this.nameValue = '';
         this.descriptionValue = '';
         this.linkValue = '';
-        this.priceValue = '';
+        this.priceValue = null;
       },
 
-      submitForm() {
+      async submitForm() {
         const product = {
           id: new Date().getTime(),
           name: this.nameValue,
@@ -109,7 +106,7 @@
           price: this.priceValue,
         };
 
-        this.$store.dispatch('update', product);
+        await this.$store.dispatch('update', product);
 
         this.resetModelValue();
       },
