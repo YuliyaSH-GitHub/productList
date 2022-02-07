@@ -86,7 +86,7 @@
 
     methods: {
       validateInput(modelValue) {
-        if (modelValue === '') {
+        if (modelValue === '' || modelValue === null) {
           this.inputIsValid = false;
         } else {
           this.inputIsValid = true;
@@ -140,16 +140,16 @@
       border: 1px solid transparent;
       border-radius: 4px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
 
-    &__input::placeholder {
-      @include input-text;
+      &::placeholder {
+        @include input-text;
 
-      color: $nobel;
-    }
+        color: $nobel;
+      }
 
-    &__input:focus {
-      outline-color: $nobel;
+      &:focus {
+        outline-color: $nobel;
+      }
     }
 
     &__label {

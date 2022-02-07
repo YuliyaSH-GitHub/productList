@@ -13,7 +13,7 @@ const productsInitial = [
     description:
       'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     link: 'https://placeimg.com/640/480/tech',
-    price: '10 000',
+    price: '8 000',
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const productsInitial = [
     description:
       'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     link: 'https://placeimg.com/640/480/tech',
-    price: '10 000',
+    price: '7 000',
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const productsInitial = [
     description:
       'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     link: 'https://placeimg.com/640/480/tech',
-    price: '10 000',
+    price: '9 000',
   },
 ];
 
@@ -44,10 +44,6 @@ const Client = {
     return JSON.parse(value);
   },
 
-  get() {
-    return JSON.parse(localStorage.getItem(KEY));
-  },
-
   save(product) {
     let data = this.load();
 
@@ -56,6 +52,10 @@ const Client = {
     localStorage.setItem(KEY, JSON.stringify(payload));
 
     return payload;
+  },
+
+  updateLocalStorage(products) {
+    localStorage.setItem(KEY, JSON.stringify(products));
   },
 };
 
