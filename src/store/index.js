@@ -1,5 +1,4 @@
-import { createStore } from 'vuex';
-
+import {createStore} from 'vuex';
 import storage from '@/storage';
 
 export default createStore({
@@ -22,7 +21,7 @@ export default createStore({
   },
 
   actions: {
-    async load({ commit }) {
+    async load({commit}) {
       try {
         const content = await storage.load();
 
@@ -34,7 +33,7 @@ export default createStore({
       }
     },
 
-    async update({ commit }, product) {
+    async update({commit}, product) {
       try {
         const content = await storage.save(product);
 
