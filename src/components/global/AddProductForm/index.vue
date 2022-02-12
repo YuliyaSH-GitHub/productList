@@ -103,7 +103,7 @@
           name: this.nameValue,
           description: this.descriptionValue,
           link: this.linkValue,
-          price: this.priceValue,
+          price: (+this.priceValue).toLocaleString('ru'),
         };
 
         await this.$store.dispatch('update', product);
@@ -119,6 +119,8 @@
     display: flex;
     flex-direction: column;
 
+    width: 332px;
+    min-width: 332px;
     padding: 24px;
 
     border-radius: 4px;
@@ -129,8 +131,6 @@
     &__group {
       display: flex;
       flex-direction: column;
-
-      width: 284px;
 
       &:not(:first-child) {
         margin-top: 16px;

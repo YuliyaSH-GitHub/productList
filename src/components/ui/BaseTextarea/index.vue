@@ -58,7 +58,7 @@
     }
 
     &__textarea {
-      resize: vertical;
+      resize: none;
 
       min-height: 108px;
     }

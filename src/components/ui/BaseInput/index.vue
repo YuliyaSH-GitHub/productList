@@ -15,7 +15,7 @@
       @input="$emit('update:modelValue', $event.target.value)"
     />
 
-    <p v-if="errorVisible" class="base-input__error">
+    <p v-show="errorVisible" class="base-input__error">
       Поле является обязательным!
     </p>
   </div>
@@ -91,8 +91,6 @@
         } else {
           this.inputIsValid = true;
         }
-
-        this.$emit('update:modelValue', modelValue);
       },
     },
   };
@@ -100,6 +98,8 @@
 
 <style lang="scss" scoped>
   .base-input {
+    position: relative;
+
     &.required {
       & .base-input__label-text {
         position: relative;
@@ -150,6 +150,12 @@
       &:focus {
         outline-color: $nobel;
       }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
 
     &__label {
@@ -163,7 +169,9 @@
     &__error {
       @include error-text;
 
-      margin-top: 4px;
+      position: absolute;
+      left: 0;
+      bottom: -14px;
 
       color: $geraldine;
     }

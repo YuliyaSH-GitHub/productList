@@ -16,6 +16,27 @@ export default createStore({
     setProducts(state, data) {
       state.products = data;
     },
+
+    sortIncrease(state) {
+      return state.products.sort(
+        (a, b) =>
+          parseFloat(a.price.replace(/[^0-9.]/gim, '')) -
+          parseFloat(b.price.replace(/[^0-9.]/gim, ''))
+      );
+    },
+
+    sortDecrease(state) {
+      return state.products.sort(
+        (a, b) =>
+          parseFloat(b.price.replace(/[^0-9.]/gim, '')) -
+          parseFloat(a.price.replace(/[^0-9.]/gim, ''))
+      );
+    },
+
+    sortName(state) {
+      const collator = new Intl.Collator('ru');
+      return state.products.sort((a, b) => collator.compare(a.name, b.name));
+    },
   },
 
   actions: {
